@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Властелин колец</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Jomolhari&display=swap');
+
+        body {
+            background-color: #222;
+            color: #fff;
+            font-family: 'Jomolhari', 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            margin-left:40%;
+            color: #ffd700;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        th {
+            background-color: #333;
+            color: #ffd700;
+        }
+
+        tr:nth-child(even) {
+            background-color: #444;
+        }
+
+        a {
+            color: #ffd700;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        a.add-character {
+            background-color: #ffd700;
+            color: #222;
+            padding: 10px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        a.add-character:hover {
+            background-color: #ffc107;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>Персонажи "Властелина колец"</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Раса</th>
+                <th>Описание</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for character in characters %}
+                <tr>
+                    <td>{{ character.name }}</td>
+                    <td>{{ character.race }}</td>
+                    <td>{{ character.description }}</td>
+                    <td>
+                        <a href="{{ url_for('edit', id=character.id) }}">Изменить</a>
+                        <a href="{{ url_for('delete', id=character.id) }}">Удалить</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a style='margin-left: 46%;' class="add-character" href="{{ url_for('add') }}">Добавить персонажа</a>
+</body>
+</html>
